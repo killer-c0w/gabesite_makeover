@@ -1,0 +1,105 @@
+/* Retro GRUB splash screen styling */
+@font-face {
+  font-family: 'VCR';
+  src: url('./assets/vcr-jp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'VCR', monospace;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+.grub-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.grub-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: top-left;
+  align-items: left;
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 0;
+  padding: 40px;
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+  min-height: 500px;
+}
+
+.grub-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.grub-title {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #ccc;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 0;
+  font-family: 'VCR', monospace;
+}
+
+.grub-content a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.grub-content a:hover,
+.grub-content a:focus,
+.grub-content a.active {
+  background-color: #fff;
+  color: #000;
+}
+
+.grub-help {
+  margin-top: 20px;
+  text-align: left;
+  color: #ccc;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-family: 'VCR', monospace;
+}
+
+.grub-help p {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .grub-content {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .grub-title {
+    font-size: 2rem;
+  }
+}
+
+

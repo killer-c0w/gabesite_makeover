@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Retro GRUB splash screen styling */
 @font-face {
   font-family: 'VCR';
@@ -33,8 +35,8 @@ body {
 .grub-content {
   display: flex;
   flex-direction: column;
-  justify-content: top-left;
-  align-items: left;
+  justify-content: flex-start;
+  align-items: flex-start;
   background-color: #000;
   border: 1px solid #fff;
   border-radius: 0;
@@ -67,6 +69,8 @@ body {
   text-decoration: none;
   padding: 5px 10px;
   margin-bottom: 10px;
+  display: block;
+  width: 100%;
 }
 
 .grub-content a:hover,

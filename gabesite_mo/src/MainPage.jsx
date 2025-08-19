@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './App.css'
 
-function Resume() {
+function MainPage() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const navigate = useNavigate()
   
-  const resumeItems = [
-    { href: "/", text: "BACK TO MAIN" },
-    { href: "/projects", text: "PROJECTS" },
-    { href: "https://github.com/killer-c0w", text: "GITHUB", external: true },
-    { href: "https://linkedin.com/in/gabrielkessler", text: "LINKEDIN", external: true }
+  const navItems = [
+    { path: "/projects", text: "Projects" },
+    { href: "https://github.com/killer-c0w", text: "github", external: true },
+    { href: "https://linkedin.com/in/gabrielkessler", text: "linkedin", external: true }
   ]
 
   useEffect(() => {
@@ -16,19 +17,19 @@ function Resume() {
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault()
-          setActiveIndex(prev => (prev + 1) % resumeItems.length)
+          setActiveIndex(prev => (prev + 1) % navItems.length)
           break
         case 'ArrowUp':
           e.preventDefault()
-          setActiveIndex(prev => (prev - 1 + resumeItems.length) % resumeItems.length)
+          setActiveIndex(prev => (prev - 1 + navItems.length) % navItems.length)
           break
         case 'Enter':
           e.preventDefault()
-          const currentItem = resumeItems[activeIndex]
+          const currentItem = navItems[activeIndex]
           if (currentItem.external) {
             window.open(currentItem.href, '_blank', 'noopener,noreferrer')
           } else {
-            window.location.href = currentItem.href
+            navigate(currentItem.path)
           }
           break
       }
@@ -38,27 +39,37 @@ function Resume() {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [activeIndex, resumeItems])
+  }, [activeIndex, navItems, navigate])
 
   const handleMouseEnter = (index) => {
     setActiveIndex(index)
   }
 
+  const handleClick = (item) => {
+    if (item.external) {
+      window.open(item.href, '_blank', 'noopener,noreferrer')
+    } else {
+      navigate(item.path)
+    }
+  }
+
   return (
     <div className="grub-container">
       <div className="grub-header">
-        <h1 className="grub-title">RESUME</h1>
+        <h1 className="grub-title">GABE</h1>
       </div>
       
       <div className="grub-content">
-        {resumeItems.map((item, index) => (
+        {navItems.map((item, index) => (
           <a 
             key={index}
-            href={item.href}
+            href="#"
             className={activeIndex === index ? 'active' : ''}
             onMouseEnter={() => handleMouseEnter(index)}
-            target={item.external ? "_blank" : undefined}
-            rel={item.external ? "noopener noreferrer" : undefined}
+            onClick={(e) => {
+              e.preventDefault()
+              handleClick(item)
+            }}
           >
             {item.text}
           </a>
@@ -74,4 +85,4 @@ function Resume() {
   )
 }
 
-export default Resume
+export default MainPage
